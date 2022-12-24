@@ -1,0 +1,14 @@
+// testa ++ e --
+
+
+int h,i;
+int j,k;
+
+++i;
+
+j--;
+
+0 ++ j;
+--h - k--;
+
+t = h + i - j / k;
