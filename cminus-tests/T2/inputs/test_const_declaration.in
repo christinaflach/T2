@@ -1,0 +1,3 @@
+// TP2 test:  valid const declaration
+int const min = 1;
+void main(void) {}

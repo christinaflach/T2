@@ -1,0 +1,8 @@
+// Testa enum
+
+enum week {Mon, Tue, Wed};
+enum week day;
+
+day = Tue;
+
+

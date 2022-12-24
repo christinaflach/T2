@@ -1,0 +1,6 @@
+// linha a1 
+// outra linha b
+void main(void) // linha 1
+{
+    int aTab;   // linha 3 com tab
+}               // linha 4

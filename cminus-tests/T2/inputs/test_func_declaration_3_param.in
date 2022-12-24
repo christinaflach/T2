@@ -1,0 +1,2 @@
+// TP2 test: 3 param
+void main(int argc, int argb, int arga) {}
