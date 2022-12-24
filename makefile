@@ -28,7 +28,7 @@ $(PROJ_NAME): cminus.tab.o lex.yy.o ast.o main.o
 	@ echo 'Finished building binary: $@'
 	@ echo ' '
 
-cminus.tab.o: cminus.tab.c src/ast.h
+cminus.tab.o: cminus.tab.c
 	@ echo 'Building target using GCC compiler: $<'
 	$(CC) $< $(CC_FLAGS)
 	@ echo ' ' 
@@ -38,7 +38,7 @@ lex.yy.o: lex.yy.c token.h
 	$(CC) $< $(CC_FLAGS)
 	@ echo ' ' 
 
-ast.o: src/ast.c src/ast.h
+ast.o: src/ast.c 
 	@ echo 'Building target using GCC compiler: $<'
 	$(CC) $< $(CC_FLAGS)
 	@ echo ' '
@@ -58,10 +58,11 @@ lex.yy.c: src/cminus.l
 cminus.tab.c: src/cminus.y
 	@ echo 'Generating $@'
 	bison --defines=token.h src/cminus.y
+	cp token.h src/
 	@ echo ' ' 
 
 clean:
-	rm -rf *.o *~ lex.yy.c cminus.tab.* token.h $(PROJ_NAME)
+	rm -rf *.o *~ lex.yy.c cminus.tab.* token.h src/token.h $(PROJ_NAME)
 
 .PHONY: all clean
 

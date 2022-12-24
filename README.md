@@ -136,7 +136,7 @@ IMPORTANTE: o símbolo de barra invertida (backslash \) é usado para não inter
       * ver EXPRESSION             --> definição recursiva de qualquer expressão válida
 
    - ```[OP ... ]```              --> operadores de expressão binária
-     ```OP pode ser: +, -, *, /, <, <=, >, >=, ==, !=, =, !```
+     ```OP pode ser: +, -, *, /, <, <=, >, >=, ==, !=, =```
 
       * [var  ... ]      ---> uso de variável
 
@@ -171,27 +171,30 @@ que faz a interface com o analisador léxico gerado pelo Flex.
 listas ou tipos escalares, usado no T1 deve ser eliminado.
 Os tokens serão definidos no arquivo _cminus.y_, usando a diretiva ```%token```.
 Também deve ser removida a função _main_ usada no T1.
+Obs.: Na pasta _src_ está um template cminus.l, caso queiram usar.
 
 Em seguida, rodar o Flex (observar o novo nome):
 
 ```$ flex cminus.l```
 
 Por fim, 
-compilar e gerar o executável, supondo que 
-As funções da AST devem ser colocadas nos arquivos _ast.c_ e _ast.h_.
-A função _main_ e a função _prettyprint_ 
-para geração de saída no formato _labelled bracket_  
-estão em um arquivo C chamado de _cminus.c_.
+compilar e gerar o executável chamado de _cminus_. 
+As funções para criação e manipulação da AST estão nos arquivos _ast.c_ e _ast.h_.
+A função _main_ chama a função _bracket_
+para geração de saída no formato _labelled bracket_.
+A função _main_ está definida em um arquivo C chamado de _main.c_.
 
-```$ cc -o cminus cminus.tab.c lex.yy.c ast.c cminus.c -ll```
+O arquivo _makefile_ contém instruções para compilar os arquivos 
+e gerar o executável _cminus_. Para limpar os arquivos temporários,
+use o comando ```make clean```.
 
 ### Como executar o analisador sintático
 
 No T2, também usaremos nomes de arquivos passados como argumentos 
 na chamada a _cminus_.
-A função _main_  chama a função _yyparse()_ que devolve um ponteiro
-para a raiz da AST, e chama a função _prettyprint_ 
-que percorrerá a AST para gerar sua representação na notação _labelled bracket_.
+A função _main_  chama a função _yyparse()_ que, em caso de sucesso,
+coloca o endereço da raiz da AST na variável _parser_result_, 
+e chama a função _bracket_  para gerar a representação da AST na notação _labelled bracket_.
 Em caso de erro sintático identificado, 
 o mesmo será reportado e a análise interrompida, sem geração de AST.
 
@@ -204,7 +207,7 @@ representada na notação _labelled bracket_.
 - O nome do arquivo Flex modificado deve ser cminus.l
 - O nome do arquivo Bison deve ser cminus.y
 - Manter os nomes ast.h e ast.c para definição e manipulação da AST
-- O nome do arquivo que contém a função _main_ deve ser cminus.c.
+- O nome do arquivo que contém a função _main_ deve ser main.c.
 
 ## Exemplo 1 
 ### Arquivo de entrada em C- exemplo.cm

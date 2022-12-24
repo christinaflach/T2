@@ -1,11 +1,5 @@
 %option noyywrap yylineno nodefault
 %{
-
-// yylineno    - variable to track line numbers 
-// nodefault   - do not add a default rule at the end of the scanner 
-//               that copies otherwise unmatched input to yyout.
-
-#include <stdio.h>
 #include "token.h"
 %}
 
@@ -13,21 +7,43 @@
 
 "//".*                      { /* no action */ }
 
-int                         { return TOKEN_INT; }
-void                        { return TOKEN_VOID; }
+int             { return INT; }
+void            { return VOID; }
+do 		{ return DO; }
+else            { return ELSE; }
+if              { return IF; }
+return          { return RETURN; }
+while           { return WHILE; }
 
-do 			    { return TOKEN_DO; }
+[A-Za-z]([A-Za-z_]|[0-9])*  { return ID; }
+[0-9]+          { return NUM; }
 
-[A-Za-z]([A-Za-z_]|[0-9])*  { return TOKEN_ID; }
-[0-9]+                      { return TOKEN_NUM; }
+"+"		{ return ADD; }
+"-" 		{ return MINUS; }
+"*"		{ return TIMES; }
+"/"		{ return DIV; }
+"="             { return ASSIGN; }
 
-"+"			    { return TOKEN_ADD; }
-"-" 			    { return TOKEN_MINUS; }
-"*"			    { return TOKEN_TIMES; }
-"/"			    { return TOKEN_DIV;}
+"<"             { return LT; }
+">"             { return GT; }
+"<="       	{ return LTE; }
+">="       	{ return GTE; }
+"=="       	{ return EQ; }
+"!="       	{ return NEQ; }
 
-[ \t\n]                     { /* no action */ }
-.                           { return TOKEN_ERROR; }
+";"        	{ return SEMIC; }
+","    		{ return COMMA; }
+
+"("   		{ return OPENP; }
+")"   		{ return CLOSEP; }
+"["   		{ return OPENB; } 
+"]"   		{ return CLOSEB; }
+"{"   		{ return OPENC; }
+"}"   		{ return CLOSEC; }
+
+[ \t\n]         { /* no action */ }
+.               { return ERROR; }
 
 %%
+
 
