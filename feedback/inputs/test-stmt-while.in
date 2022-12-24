@@ -1,0 +1,9 @@
+// main
+void main(void) {
+    int i;
+    i = 0;
+    while (i < 10) do {
+        x[i] = input();
+        i = i + 1;
+    }
+}

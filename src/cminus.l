@@ -1,51 +1,49 @@
 %option noyywrap yylineno nodefault
 %{
-
-// yylineno    - variable to track line numbers 
-// nodefault   - do not add a default rule at the end of the scanner 
-//               that copies otherwise unmatched input to yyout.
-
-#include <stdio.h>
 #include "token.h"
-
-/***************** INSERIR modificações nos padrões ******************/
-/* Por exemplo, usar os nomes de tokens definidos em cminus.y */
-
 %}
 
 %%
 
 "//".*                      { /* no action */ }
 
-int                         { return TOKEN_INT; }
-void                        { /* return ... */ }
+int             { return INT; }
+void            { return VOID; }
+do 		{ return DO; }
+else            { return ELSE; }
+if              { return IF; }
+return          { return RETURN; }
+while           { return WHILE; }
 
-	/* MODIFICAR para incluir todas as keywords */
+[A-Za-z]([A-Za-z_]|[0-9])*  { return ID; }
+[0-9]+          { return NUM; }
 
-do 			    { /* return ... */ }
-else                        { /* return ... */ }
-if                          { /* return ... */ }
-return                      { /* return ... */ }
-while                       { /* return ... */ }
+"+"		{ return ADD; }
+"-" 		{ return MINUS; }
+"*"		{ return TIMES; }
+"/"		{ return DIV; }
+"="             { return ASSIGN; }
 
-[A-Za-z]([A-Za-z_]|[0-9])*  { /* return ... */ }
-[0-9]+                      { /* return ... */ }
+"<"             { return LT; }
+">"             { return GT; }
+"<="       	{ return LTE; }
+">="       	{ return GTE; }
+"=="       	{ return EQ; }
+"!="       	{ return NEQ; }
 
-"+"			    { /* return ... */ }
-"-" 			    { /* return ... */ }
-"*"			    { /* return ... */ }
-"/"			    { /* return ... */ }
+";"        	{ return SEMIC; }
+","    		{ return COMMA; }
 
-	/* MODIFICAR: separar simbolos para retornar token específico */
- 
-("="|"<"|">")               {  }
-("<="|">="|"=="|"!=")       {  }
-(";"|",")                   {  }
-("("|")"|"["|"]"|"{"|"}")   {  }
+"("   		{ return OPENP; }
+")"   		{ return CLOSEP; }
+"["   		{ return OPENB; } 
+"]"   		{ return CLOSEB; }
+"{"   		{ return OPENC; }
+"}"   		{ return CLOSEC; }
 
-[ \t\n]                     { /* no action */ }
-.                           { return TOKEN_ERROR; }
-
+[ \t\n]         { /* no action */ }
+.               { return ERROR; }
 
 %%
+
 

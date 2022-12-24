@@ -16,7 +16,7 @@ CC=gcc
 # Flags for compiler
 CC_FLAGS=-c         \
          -W         \
-         -ansi 
+         -ansi
 
 # compilation and linking
 
