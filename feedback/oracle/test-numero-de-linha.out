@@ -1,0 +1,10 @@
+[program 
+[func-declaration 
+[void]
+[main]
+[params
+]
+[compound-stmt 
+[var-declaration [int][aTab]]]
+]
+]

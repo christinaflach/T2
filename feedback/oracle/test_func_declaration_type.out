@@ -1,0 +1,9 @@
+[program 
+[func-declaration 
+[int]
+[foo]
+[params
+]
+[compound-stmt ]
+]
+]

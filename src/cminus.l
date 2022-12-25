@@ -15,8 +15,8 @@ if              { return IF; }
 return          { return RETURN; }
 while           { return WHILE; }
 
-[A-Za-z]([A-Za-z_]|[0-9])*  { return ID; }
-[0-9]+          { return NUM; }
+[A-Za-z]([A-Za-z_]|[0-9])* { yylval.name = strdup(yytext); return ID; }
+[0-9]+          { yylval.d = atoi(yytext); return NUM; }
 
 "+"		{ return ADD; }
 "-" 		{ return MINUS; }

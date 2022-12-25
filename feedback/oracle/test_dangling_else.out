@@ -1,0 +1,14 @@
+[program 
+[func-declaration 
+[void]
+[main]
+[params
+]
+[compound-stmt 
+[selection-stmt 
+[> [var [a]][10]]
+[selection-stmt 
+[== [var [b]][0]][var [a]]
+[- [0][var [a]]]]]]
+]
+]

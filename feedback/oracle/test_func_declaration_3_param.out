@@ -1,0 +1,12 @@
+[program 
+[func-declaration 
+[void]
+[main]
+[params
+[param [int][argc]]
+[param [int][argb]]
+[param [int][arga]]
+]
+[compound-stmt ]
+]
+]

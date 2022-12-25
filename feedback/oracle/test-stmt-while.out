@@ -1,0 +1,23 @@
+[program 
+[func-declaration 
+[void]
+[main]
+[params
+]
+[compound-stmt 
+[var-declaration [int][i]]
+[= [var [i]][0]]
+[iteration-stmt 
+[< [var [i]][10]]
+[compound-stmt 
+[= [var [x][var [i]]]
+[call 
+[input]
+[args ]
+]]
+[= [var [i]]
+[+ [var [i]][1]]]]
+]
+]
+]
+]
