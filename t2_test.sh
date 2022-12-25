@@ -7,7 +7,8 @@ srclexer=/src/lexer/
 feedback=/feedback
 inputs=/feedback/inputs/
 outputs=/feedback/outputs/
-outputsc=/feedback/outputsc/
+#outputsf=/feedback/outputsf/
+outputsc=/feedback/outputs/
 oracle=/feedback/oracle/
 oracleok=/feedback/oracleok/
 oraclenok=/feedback/oraclenok/
@@ -63,8 +64,8 @@ if [ "$(ls -A $testenv$outputs)" ]; then
 echo
 # remove newline and then 1 bracket element per line
 # echo "filtering .............................."
-#./oremins_outputs.sh
 # echo
+
 # compare outputsc with oraclec
 echo "comparing .............................."
 ./diff_parser.sh
@@ -79,7 +80,7 @@ mkdir "$testenv$mydiffTN"
 mkdir "$testenv$mydiffFP"
 mkdir "$testenv$mydiffFN"
 
-cd "$testenv$oraclec"
+cd "$testenv$oracle"
 mytests=$(ls)
 cd $testenv
 
@@ -186,6 +187,15 @@ else
     echo "compiling error(s): bison, flex or other."
 fi
 echo
+
+#rm -rf "$testenv$naopassou"
+#rm -rf "$testenv$passou"
+#rm -rf "$testenv$mydiffTP"
+#rm -rf "$testenv$mydiffTN"
+#rm -rf "$testenv$mydiffFP"
+#rm -rf "$testenv$mydiffFN"
+#rm -rf "$testenv$outputsc"
+
 echo "Done: `date`"
 echo "--------------------------------------------------------"
 echo

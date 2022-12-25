@@ -25,39 +25,35 @@ void yyerror(const char *s);
 }
 
 /* declare tokens */
-%token <name> ID
 %token <d> NUM
+%token <name> ID
 %token DO
 %token ELSE
+%token FOR
 %token IF
 %token INT
 %token RETURN
 %token VOID
 %token WHILE
-
-%token ADD
-%token MINUS
-%token TIMES
-%token DIV
 %token ASSIGN
-
+%token EQ
+%token NEQ
 %token LT
 %token GT
 %token LTE
 %token GTE
-%token EQ
-%token NEQ
-
+%token ADD
+%token MINUS
+%token TIMES
+%token DIV
 %token SEMIC
 %token COMMA
-
 %token OPENP
 %token CLOSEP
 %token OPENB
 %token CLOSEB
 %token OPENC
 %token CLOSEC
-
 %token ERROR
 
 %nonassoc EQ
@@ -66,7 +62,7 @@ void yyerror(const char *s);
 %nonassoc GT
 %nonassoc LTE
 %nonassoc GTE
-
+%nonassoc ASSIGN
 %nonassoc ELSE
 
 %type <decl>  program
@@ -77,8 +73,7 @@ void yyerror(const char *s);
 %type <plist> params param_list param
 %type <stmt>  compound_stmt
 %type <stmt>  statement_list statement
-%type <stmt>  stmt_matched stmt_unmatched 
-%type <stmt>  iteration_stmt return_stmt
+%type <stmt>  stmt_matched stmt_unmatched iteration_stmt return_stmt
 %type <stmt>  expression_stmt
 %type <expr>  expression simple_expression
 %type <expr>  additive_expression factor term call var
@@ -173,8 +168,8 @@ stmt_matched
 | return_stmt
 ;
 
-expression_stmt
-: expression SEMIC { $$ = stmt_create(STMT_EXPR,0,0,$1,0,0,0,0); }
+expression_stmt:
+  expression SEMIC { $$ = stmt_create(STMT_EXPR,0,0,$1,0,0,0,0); }
 | SEMIC            { $$ = stmt_create(STMT_EXPR,0,0,0,0,0,0,0); }
 ;
 
@@ -253,3 +248,4 @@ void yyerror(const char *s){
 	printf("%s\n", s);
 }
 
+	
